@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Allow Discord</h1>
+    <button>Toggle</button>
+
+    <br>
+    <p>Current Status: </p>
+
+    <script>
+        const button = document.querySelector('button');
+        const p = document.querySelector('p');
+       
+        fetch('http://localhost:3090/status')
+            .then(response => response.json())
+            .then(data => {
+                if (data == true) {
+                    p.textContent = "Current Status: Allowed";
+                } else {
+                    p.textContent = "Current Status: Not Allowed";
+                }
+            })
+            .catch(error => {
+                // Handle any errors that occur during the request
+            });
+    
+        button.addEventListener('click', () => {
+        fetch('http://localhost:3090/toggle')
+            .then(response => response.json())
+            .then(data => {
+                if (data == true) {
+                    p.textContent = "Current Status: Allowed";
+                } else {
+                    p.textContent = "Current Status: Not Allowed";
+                }
+            })
+            .catch(error => {
+                // Handle any errors that occur during the request
+            });
+        });
+    </script>
+</body>
+</html>
